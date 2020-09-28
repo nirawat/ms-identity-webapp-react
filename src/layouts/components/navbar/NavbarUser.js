@@ -86,9 +86,6 @@ const UserDropdown = (props) => {
               if (provider === "jwt") {
                 return props.logoutWithJWT();
               }
-              if (provider === "firebase") {
-                return props.logoutWithFirebase();
-              }
             } else {
               history.push("/pages/login");
             }

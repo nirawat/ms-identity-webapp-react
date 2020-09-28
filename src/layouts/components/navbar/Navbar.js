@@ -5,8 +5,8 @@ import classnames from "classnames";
 import { logoutWithJWT } from "../../../redux/actions/auth/loginActions";
 import NavbarBookmarks from "./NavbarBookmarks";
 import NavbarUser from "./NavbarUser";
-import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg";
-import themeConfig from "../../../configs/themeConfig";
+import userNone from "../../../assets/img/portrait/small/avatar-s-none.jpg";
+//import userImg from "../../../assets/img/portrait/small/avatar-s-none.jpg";
 
 const UserName = (props) => {
   let username = "";
@@ -21,15 +21,15 @@ const UserName = (props) => {
       username = props.user.login.values.loggedInUser.name;
     }
   } else {
-    let azureAuth = themeConfig.azureAuth.profile;
-    username = azureAuth.givenName === null ? "Guest" : azureAuth.givenName;
+    username = props.userProfile.givenName === null ? "Guest" : `${props.userProfile.givenName} ${props.userProfile.surname.substring(0,1)}.`;
   }
   return username;
 };
 const ThemeNavbar = (props) => {
-  const { user } = ""; //useAuth0()
+  const { user } = ''//useAuth0()
   const colorsArr = ["primary", "danger", "success", "info", "warning", "dark"];
   const navbarTypes = ["floating", "static", "sticky", "hidden"];
+  // {console.log(props)}
   return (
     <React.Fragment>
       <div className="content-overlay" />
@@ -94,7 +94,7 @@ const ThemeNavbar = (props) => {
                     ? props.user.login.values.photoUrl
                     : user !== undefined && user.picture
                     ? user.picture
-                    : userImg
+                    : userNone
                 }
                 loggedInWith={
                   props.user !== undefined &&
@@ -102,7 +102,6 @@ const ThemeNavbar = (props) => {
                     ? props.user.login.values.loggedInWith
                     : null
                 }
-                logoutWithJWT={props.logoutWithJWT}
               />
             </div>
           </div>
@@ -113,8 +112,11 @@ const ThemeNavbar = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  //{console.log(state.profile)}
   return {
     user: state.auth,
+    userProfile: state.profile,
+    imgProfile: ''
   };
 };
 

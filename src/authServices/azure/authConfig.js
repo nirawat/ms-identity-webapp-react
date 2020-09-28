@@ -2,10 +2,10 @@
 // visit https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md
 export const msalConfig = {
     auth: {
-        clientId: "405f7ca5-361b-42eb-a77f-2303af2a8ed7",
-        authority: "https://login.microsoftonline.com/d39b3018-688f-4d0d-9fce-8c3cb1169c21/",
+        clientId: "405f7ca5-361b-42eb-a77f-2303af2a8ed7", //Front ClientID
+        authority: "https://login.microsoftonline.com/d39b3018-688f-4d0d-9fce-8c3cb1169c21/", //TenantID: from Api
         validateAuthority: true,
-        redirectUri: "http://localhost:3000",
+        redirectUri: "https://ms-identity-webapp-react.azurewebsites.net/", //http://localhost:3000/
         navigateToLoginRequestUrl: false
     },
     cache: {

@@ -7,11 +7,10 @@ import {
   updateAccount,
   updateError,
   updateToken,
-  updateProfile,
   updateUI,
 } from "../../../redux/actions/auth/azure/updateActions";
-
 import { getProfile } from "../../../redux/actions/auth/azure/serviceActions";
+import AzureAppProfile from "./AzureAppProfile";
 
 class AzureAppContainer extends Component {
   render() {
@@ -23,7 +22,22 @@ class AzureAppContainer extends Component {
       history.push("/");
     }
     
-    return <></>;
+    return (
+      <>
+        {/* {console.log(this.props)} */}
+        {this.props.isAuthenticated ? (
+          <AzureAppProfile
+            acquireToken={this.props.acquireToken}
+            updateToken={this.props.updateToken}
+            getProfile={this.props.getProfile}
+            auth={this.props.auth}
+            ui={this.props.ui}
+          />
+        ) : (
+          <></>
+        )}
+      </>
+    );
   }
 }
 
@@ -39,14 +53,11 @@ const mapDispatchToProps = (dispatch) => ({
   updateToken: (token) => {
     dispatch(updateToken(token));
   },
-  getProfile: (id) => {
-    dispatch(getProfile(id));
-  },
-  updateProfile: (payload) => {
-    dispatch(updateProfile(payload));
-  },
   updateUI: (payload) => {
     dispatch(updateUI(payload));
+  },
+  getProfile: (id) => {
+    dispatch(getProfile(id));
   },
 });
 

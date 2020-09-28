@@ -1,6 +1,6 @@
 // You can customize the theme with the help of this file
 
-import { any } from 'prop-types';
+import { any } from "prop-types";
 
 //Template config options
 const themeConfig = {
@@ -15,7 +15,7 @@ const themeConfig = {
   disableThemeTour: false, // options[Boolean]: true, false(default)
   menuTheme: "primary", // options[String]: primary / success / danger / info / warning / dark
   direction: "ltr", // options[String] : ltr / rtl
-  azureAuth: any // azure authentication
+  azureAuth: any, // azure authentication
 };
 
 export default themeConfig;
